@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import {ProductService} from "./product.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { AppComponent } from './app.component';
     MaterialModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
