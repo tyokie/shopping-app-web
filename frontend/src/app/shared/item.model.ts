@@ -9,3 +9,28 @@ export interface IItem
   packSize: number;
   secondaryCategory: string;
 }
+
+export class Item implements IItem
+{
+  id;
+  title;
+  category;
+  imageUrl;
+  unitsInCartons;
+  unitCost;
+  packSize;
+  secondaryCategory;
+
+
+  constructor (item) {
+    this.id = item.id;
+    this.title = item.title;
+    this.category = item.category;
+    this.imageUrl = item.imageUrl;
+    this.unitsInCartons = item.unitsInCartons;
+    this.unitCost = item.unitCost;
+    this.packSize = item.packSize;
+    this.secondaryCategory = item.secondaryCategory;
+  }
+
+}
