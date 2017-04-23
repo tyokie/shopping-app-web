@@ -6,7 +6,8 @@ import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import {ProductService} from "./product.service";
+import { ProductService } from "./product.service";
+import { LocalStorageService } from "./local-storage.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {ProductService} from "./product.service";
     MaterialModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

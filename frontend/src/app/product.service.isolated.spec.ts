@@ -4,11 +4,12 @@ import { Observable } from "rxjs";
 
 describe('ProductService Isolated', () => {
   let mockHttp,
+      mocklocalStorageService,
       productService;
 
   beforeEach(() => {
     mockHttp = jasmine.createSpyObj('mockHttp', ['get']);
-    productService = new ProductService(mockHttp);
+    productService = new ProductService(mockHttp, mocklocalStorageService);
 
   });
 

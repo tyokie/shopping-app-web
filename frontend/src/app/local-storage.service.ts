@@ -37,7 +37,6 @@ export class LocalStorageService {
 
   add(product) {
     this._products.push(new ProductModel(product));
-    //this.products(new ProductModel(product));
     this.persist();
   }
 

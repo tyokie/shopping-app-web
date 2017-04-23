@@ -9,6 +9,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { IItem } from './shared/item.model';
 import { IRecommendation } from './shared/recommendation.model';
 import { IProduct } from './shared/product.model';
+import { LocalStorageService } from './local-storage.service';
 
 const mockHttpProvider = {
   deps: [ MockBackend, BaseRequestOptions ],
@@ -17,12 +18,15 @@ const mockHttpProvider = {
   }
 };
 
+const mockLocalStorageService = jasmine.createSpyObj('mockLocalStorageService', ['add'])
+
 describe('ProductService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         ProductService,
         { provide: Http, useValue: mockHttpProvider },
+        { provide: LocalStorageService, useValue: mockLocalStorageService },
         MockBackend,
         BaseRequestOptions,
         { provide: XHRBackend, useValue: MockBackend }
