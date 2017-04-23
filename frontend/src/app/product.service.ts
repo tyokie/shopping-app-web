@@ -24,9 +24,7 @@ export class ProductService {
     return this._http.get(this._url)
       .map((res: Response) => {
         let data = res.json().products;
-        this._localStorageService.products = data.map((product) => {
-          return new ProductModel(product);
-        });
+        this._localStorageService.add(data.map((product) => { return product; }));
         return <IProduct[]>data; //maybe change this
       })
       .catch(this.handleError);

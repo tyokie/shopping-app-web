@@ -60,7 +60,6 @@ export class LocalStorageService {
   }
 
   _clearCache() {
-    //this._products = [];
     //this._productOrders = null;
   }
 
