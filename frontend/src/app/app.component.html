@@ -1,3 +1,73 @@
-<h1>
-  {{title}}
-</h1>
+<md-toolbar class="md-toolbar__main">
+  <span>
+    Total<br>
+    Products<br>
+    11
+  </span>
+  <span>
+    Total<br>
+    Cost<br>
+    $1,940.80
+  </span>
+
+  <md-toolbar-row>
+    <span></span>
+  </md-toolbar-row>
+
+</md-toolbar>
+
+
+<div layout="row" class="div__toggleView--Container">
+  <span><a href="#" (click)="true"><md-icon class="md-icon__toggleViewIcon" >list</md-icon></a></span>
+  <span><a href="#" (click)="true"><md-icon class="md-icon__toggleViewIcon">view_module</md-icon></a></span>
+</div>
+
+<div class="container-fluid">
+
+  <md-card
+    class="md-card__container"
+    *ngFor="let product of products"
+    [ngClass]="(product.items.length > 1) ? 'col-xs-12 col-sm-8 col-sm-offset-1 col-md-7 col-lg-7': 'col-xs-12 col-sm-8 col-sm-offset-1 col-md-2 col-lg-2'">
+
+    <button md-mini-fab class="button__addIcon"><md-icon> add </md-icon></button>
+    <div layout="column"
+         *ngFor="let item of product.items"
+         [ngClass]="(product.items.length > 1) ? 'col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1': ''">
+      <img md-card-image src="{{item.imageUrl}}" />
+      <md-card-subtitle>{{ item.title | uppercase }}</md-card-subtitle>
+      <md-card-content class="md-card-content__productDetails">
+        <div layout="row">
+          <div flex="75">&nbsp;</div>
+          <div flex="25"><p>${{ item.unitCost | currency:'AUD' }}</p></div>
+          <p class="p__smallPackDescription">per unit</p>
+        </div>
+        <div layout="row">
+          <p class="p__smallPackDescription">${{ item.unitsInCartons }} units per carton</p>
+          <p class="p__smallPackDescription">({{ calculatePackCost(item) | currency:'AUD':true }})</p>
+        </div>
+      </md-card-content>
+    </div>
+    <div>
+    <md-card-footer *ngIf="displayPackRecommendations(product.items)" class="md-card-footer__pack--info">
+      <md-grid-list cols="2" rowHeight="0.14:.02">
+        <md-grid-tile>
+          <p>
+            <span class="span__highlight--Digits">{{ product.items.length }}</span> <span>ITEMS</span><br>
+            <span>SELLS WELL TOGETHER*</span>
+          </p>
+        </md-grid-tile>
+        <md-grid-tile>
+          <p>
+            <span class="span__highlight--Digits">{{ calculateRecommendationPercentage(product.recommendation) }}</span><br>
+            <span>RECOMMENDED*</span></p>
+        </md-grid-tile>
+      </md-grid-list>
+    </md-card-footer>
+    </div>
+  </md-card>
+
+</div> <!--//.grid-->
+
+
+
+

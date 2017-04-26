@@ -1,0 +1,78 @@
+.md-toolbar__main {
+  background-color: #01aaaa;
+  color: #fefefe;
+}
+
+.md-toolbar__main span {
+  min-width: 200px;
+  margin-right: .4em;
+  padding: 3em 16px 0;
+}
+
+.md-toolbar__main span:nth-child(1) {
+  border-right: 1px solid #fff;
+}
+.md-card__container {
+  margin-bottom: 4em;
+}
+
+.md-card-content__productDetails {
+  margin-bottom: 3em;
+}
+
+.div__toggleView--Container {
+  text-align: right;
+  padding: 16px;
+  margin-bottom: 1em;
+  color: #bbbcbc;
+}
+
+.div__toggleView--Container a,
+.div__toggleView--Container a:link {
+  color: #bbbcbc;
+}
+
+.div__toggleView--Container a:hover,
+.div__toggleView--Container a:active {
+  color: #01aaaa;
+}
+
+.button__addIcon {
+  position: absolute;
+  right: 1%;
+  top: -1.6em;
+  background-color: #01aaaa;
+}
+
+.p__smallPackDescription {
+  color: #bbbcbc;
+  margin: 0 0;
+}
+
+.md-icon__toggleViewIcon {
+  font-size: 48px;
+  display: inline-block;
+  margin: .3em;
+}
+
+.md-card-footer__pack--info {
+  background-color: #eafbfa;
+  margin-bottom: 0px;
+  margin-top:1em;
+}
+
+.md-card-footer__pack--info p {
+  text-align: center;
+}
+
+.md-card-footer__pack--info p span {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #575959;
+  font-size: 12px;
+}
+
+.md-card-footer__pack--info p .span__highlight--Digits {
+  color: #01aaaa;
+  font-size: 18px;
+}

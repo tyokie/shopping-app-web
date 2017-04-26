@@ -10,7 +10,7 @@
                "id":"10600",
                "title":"Hampton Cookset - 8 Piece",
                "category":"STAINLESS STEEL",
-               "imageUrl": "http://localhost/img/001.jpg",
+               "imageUrl": "assets/images/001.jpg",
                "unitsInCartons": 10,
                "unitCost":4.52,
                "packSize":10,
@@ -19,26 +19,26 @@
          ]
       },
       {
-         "recommendation":{  
+         "recommendation":{
             "currentLevel":79,
             "maxLevel":100
          },
-         "items":[  
-            {  
+         "items":[
+            {
                "id":"10870",
                "title":"MELAMINE BOWL",
                "category":"BOWLS",
-               "imageUrl":"http://localhost/img/001.jpg",
+               "imageUrl":"assets/images/003.jpg",
                "unitsInCartons":6,
                "unitCost":0.93,
                "packSize":5,
                "secondaryCategory":"Kids Home"
             },
-            {  
+            {
                "id":"10820",
                "title":"PP YUM YUM CUP",
                "category":"CUPS/MUGS",
-               "imageUrl":"http://localhost/img/002.jpg",
+               "imageUrl":"assets/images/002.jpg",
                "unitsInCartons":12,
                "unitCost":0.7,
                "packSize":25,
