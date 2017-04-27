@@ -14,10 +14,12 @@ export class AppComponent implements OnInit{
   products: any[];
   totalProducts: number;
   totalCost: number;
+  shoppingCart: any[]; //TODO add noOfCartons to Item model
 
   constructor (private _productService: ProductService) {
     this.totalProducts = 0;
     this.totalCost = 0;
+    this.shoppingCart = [];
   }
 
   ngOnInit () {
@@ -47,9 +49,36 @@ export class AppComponent implements OnInit{
   {
     items.map((item) => {
       this.totalProducts += (item.unitsInCartons * item.packSize);
-      this.totalCost += (item.unitsInCartons * item.packSize * item.unitCost);
-      //console.log(`Total Products: ${this.totalProducts} Total Cost: ${this.totalCost}`);
+      this.totalCost += (item.unitsInCartons * item.unitCost * 1);
+      if(!this._itemAlreadyInCart(item))
+      {
+        return this._initializeFirstProductCartonOrder(item);
+      } //then it is, so increment count
+      this.shoppingCart.map((cartItem) => {
+        (cartItem.id === item.id) ? cartItem.noOfCartons++ : '';
+      });
     });
+
+  }
+
+  private _itemAlreadyInCart(item):boolean
+  {
+    if(this.shoppingCart.length === 0)
+    {
+      return false;
+    }
+
+    let inCart = false;
+    this.shoppingCart.map((cartItem) => {
+      (cartItem.id === item.id) ? inCart = true : '';
+    });
+    return inCart;
+  }
+
+  private _initializeFirstProductCartonOrder(item):number
+  {
+    item.noOfCartons = 1;
+    return this.shoppingCart.push(item);
   }
 
 }
