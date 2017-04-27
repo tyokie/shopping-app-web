@@ -8,6 +8,7 @@ export interface IItem
   unitCost: number; //float or double
   packSize: number;
   secondaryCategory: string;
+  noOfCartons?:number;
 }
 
 export class Item implements IItem
@@ -20,7 +21,7 @@ export class Item implements IItem
   unitCost;
   packSize;
   secondaryCategory;
-
+  noOfCartons?;
 
   constructor (item) {
     this.id = item.id;
@@ -31,6 +32,7 @@ export class Item implements IItem
     this.unitCost = item.unitCost;
     this.packSize = item.packSize;
     this.secondaryCategory = item.secondaryCategory;
+    this.noOfCartons = item.noOfCartons || 1;
   }
 
 }

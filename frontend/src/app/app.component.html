@@ -18,12 +18,13 @@
 
 
 <div layout="row" class="div__toggleView--Container">
-  <span><a href="#" (click)="true"><md-icon class="md-icon__toggleViewIcon" >list</md-icon></a></span>
-  <span><a href="#" (click)="true"><md-icon class="md-icon__toggleViewIcon">view_module</md-icon></a></span>
+  <span><a href="#" (click)="toggleLayout('list')"><md-icon class="md-icon__toggleViewIcon" >list</md-icon></a></span>
+  <span><a href="#" (click)="toggleLayout('grid')"><md-icon class="md-icon__toggleViewIcon active">view_module</md-icon></a></span>
 </div>
 
 <div class="container-fluid">
 
+  <div *ngIf="layoutView === 'grid'">
   <md-card
     class="md-card__container"
     *ngFor="let product of products"
@@ -67,8 +68,41 @@
       </md-card-footer>
     </div>
   </md-card>
+  </div>
 
-</div> <!--//.grid-->
+  <div [ngClass]="(layoutView !== 'list') ? 'hide' : 'show'">
+  <div
+    *ngFor="let cartItem of shoppingCart"
+    class="col-xs-12 col-sm-10 col-sm-offset-0 col-md-offset-1 col-md-10 col-md-offset-1 col-lg-10">
+    <div class="row"><h2 class="h2__shoppingCartTitle">{{ cartItem.secondaryCategory }}</h2></div>
+    <div class="row div__shoppingCartSubTitles">
+      <h3 class=" col-xs-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2">IMAGE</h3>
+      <h3 class="col-xs-2 col-sm-2 col-md-2 col-lg-2">NAME</h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">UNIT COST</h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">PACK SIZE<br> <span>No of Units</span></h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">UNITS IN CARTON</h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">NO. OF CARTONS</h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">VALUE</h3>
+      <h3 class="col-xs-1 col-sm-1 col-md-1 col-lg-1">ACTIONS</h3>
+    </div><!--//.div__shoppingCartSubTitles-->
+    <div class="row">
+      <div class="div__shoppingCartContentBlocks col-xs-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2"><img src="{{ cartItem.imageUrl }}" alt="" width="70%"></div>
+      <div class="div__shoppingCartContentBlocks col-xs-2 col-sm-2 col-md-2 col-lg-2">{{ cartItem.title }}</div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitCost | currency:'AUD':true }}</div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.packSize }}</div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons }}</div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <input type="text" value="" size="3" class="form-control" [(value)]="cartItem.noOfCartons">
+      </div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons * cartItem.unitCost * cartItem.noOfCartons | currency:'AUD':true }}</div>
+      <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <a (click)="removeFromCart(cartItem)"><md-icon>clear</md-icon></a>
+      </div>
+    </div> <!--//.row-->
+  </div>
+  </div>
+
+</div> <!--//.container-fluid-->
 
 
 

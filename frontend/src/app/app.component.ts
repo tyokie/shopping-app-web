@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { ProductService } from './product.service';
 import { MdCard, MdMenu, MdButton } from '@angular/material';
 import { Item } from './shared/item.model';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -14,15 +15,20 @@ export class AppComponent implements OnInit{
   products: any[];
   totalProducts: number;
   totalCost: number;
-  shoppingCart: any[]; //TODO add noOfCartons to Item model
+  shoppingCart: Item[];
+  shoppingCartForm:FormGroup;
+  layoutView: string;
 
   constructor (private _productService: ProductService) {
     this.totalProducts = 0;
     this.totalCost = 0;
     this.shoppingCart = [];
+    this.layoutView = 'grid';
   }
 
   ngOnInit () {
+    let noOfCartons = new FormControl();
+
     this._productService.getProductsSummary().subscribe(( products ) => {
       console.log(products);
       this.products = products;
@@ -58,7 +64,25 @@ export class AppComponent implements OnInit{
         (cartItem.id === item.id) ? cartItem.noOfCartons++ : '';
       });
     });
+    console.log(this.shoppingCart);
+  }
 
+  removeFromCart(item): void
+  {
+    this.totalCost -= item.unitsInCartons * item.unitCost * item.noOfCartons;
+    this.totalProducts -= (item.noOfCartons * item.unitsInCartons * item.packSize);
+    this.shoppingCart.map((cartItem) => {
+      if(cartItem.id === item.id)
+      {
+        this.shoppingCart.splice(this.shoppingCart.indexOf(cartItem), 1);
+      }
+    });
+    console.log(this.shoppingCart);
+  }
+
+  toggleLayout(layoutType):void
+  {
+    this.layoutView = layoutType;
   }
 
   private _itemAlreadyInCart(item):boolean

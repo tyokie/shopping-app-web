@@ -8,10 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ProductService } from "./product.service";
 import { LocalStorageService } from "./local-storage.service";
+import { ManageShoppingCartComponent } from './manage-shopping-cart/manage-shopping-cart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ManageShoppingCartComponent
   ],
   imports: [
     BrowserModule,

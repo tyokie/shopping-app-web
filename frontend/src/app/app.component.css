@@ -55,6 +55,10 @@
   margin: .3em;
 }
 
+.md-icon__toggleViewIcon.active{
+  color: #01aaaa;
+}
+
 .md-card-footer__pack--info {
   background-color: #eafbfa;
   margin-bottom: 0px;
@@ -75,4 +79,19 @@
 .md-card-footer__pack--info p .span__highlight--Digits {
   color: #01aaaa;
   font-size: 18px;
+}
+
+
+.h2__shoppingCartTitle {
+  background-color: #efefef;
+  padding: 1em;
+}
+.div__shoppingCartSubTitles h3 {
+ font-size: 14px;
+}
+.div__shoppingCartContentBlocks {
+  display: inline-block;
+  text-align: center;
+  border-top: 1px solid #efefef;
+  padding-top: .6em;
 }
