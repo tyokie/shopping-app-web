@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ProductService } from "./product.service";
 import { LocalStorageService } from "./local-storage.service";
-import { ManageShoppingCartComponent } from './manage-shopping-cart/manage-shopping-cart.component';
+//import { ManageShoppingCartComponent } from './manage-shopping-cart/manage-shopping-cart.component';
+import { OnlyNumber } from './shared/onlynumber.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageShoppingCartComponent
+    OnlyNumber
+//    ManageShoppingCartComponent
   ],
   imports: [
     BrowserModule,

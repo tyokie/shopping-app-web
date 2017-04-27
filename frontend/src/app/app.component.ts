@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { ProductService } from './product.service';
 import { MdCard, MdMenu, MdButton } from '@angular/material';
 import { Item } from './shared/item.model';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,9 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit () {
-    let noOfCartons = new FormControl();
+    let noOfCartons = new FormControl('',
+      Validators.compose([Validators.minLength(1), Validators.maxLength(100)])
+    );
 
     this._productService.getProductsSummary().subscribe(( products ) => {
       console.log(products);

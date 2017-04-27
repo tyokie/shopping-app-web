@@ -18,8 +18,8 @@
 
 
 <div layout="row" class="div__toggleView--Container">
-  <span><a href="#" (click)="toggleLayout('list')"><md-icon class="md-icon__toggleViewIcon" >list</md-icon></a></span>
-  <span><a href="#" (click)="toggleLayout('grid')"><md-icon class="md-icon__toggleViewIcon active">view_module</md-icon></a></span>
+  <span><a href="#" (click)="toggleLayout('list')"><md-icon class="md-icon__toggleViewIcon" [ngClass]="(layoutView !== 'grid') ? 'active' : ''">list</md-icon></a></span>
+  <span><a href="#" (click)="toggleLayout('grid')"><md-icon class="md-icon__toggleViewIcon" [ngClass]="(layoutView !== 'list') ? 'active' : ''">view_module</md-icon></a></span>
 </div>
 
 <div class="container-fluid">
@@ -92,7 +92,10 @@
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.packSize }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
-        <input type="text" value="" size="3" class="form-control" [(value)]="cartItem.noOfCartons">
+        <input type="text" value="" size="3"
+               class="form-control"
+               OnlyNumber="true"
+               [(value)]="cartItem.noOfCartons">
       </div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons * cartItem.unitCost * cartItem.noOfCartons | currency:'AUD':true }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
