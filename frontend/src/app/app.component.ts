@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { ProductService } from './product.service';
 import { MdCard, MdMenu, MdButton } from '@angular/material';
 import { Item } from './shared/item.model';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   totalProducts: number;
   totalCost: number;
   shoppingCart: Item[];
-  shoppingCartForm:FormGroup;
+  cartonsForm:FormGroup;
   layoutView: string;
 
   constructor (private _productService: ProductService) {
@@ -30,11 +30,29 @@ export class AppComponent implements OnInit{
     let noOfCartons = new FormControl('',
       Validators.compose([Validators.minLength(1), Validators.maxLength(100)])
     );
+    let cartonsForm = new FormGroup({ noOfCartons: noOfCartons });
 
     this._productService.getProductsSummary().subscribe(( products ) => {
       console.log(products);
       this.products = products;
     });
+  }
+
+  //TODO: revisit buggy
+  recalculateTotals()
+  {
+    this.totalProducts = 0
+    this.totalCost = 0;
+    let total = 0;
+    this.shoppingCart.map((cartItem) => {
+      if(cartItem.noOfCartons !== 0 || cartItem.noOfCartons !== '')
+      {
+        total += (cartItem.unitsInCartons * cartItem.packSize);
+        this.totalCost += (cartItem.unitsInCartons * cartItem.unitCost * cartItem.noOfCartons);
+      }
+    });
+    this.totalProducts = total;
+    console.log(this.shoppingCart);
   }
 
   calculatePackCost(item): number

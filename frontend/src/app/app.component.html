@@ -92,10 +92,15 @@
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.packSize }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        <!--<form [formGroup]="cartonsFrom" autocomplete="off" novalidate>-->
+        <form action="">
         <input type="text" value="" size="3"
                class="form-control"
                OnlyNumber="true"
-               [(value)]="cartItem.noOfCartons">
+               name="{{cartItem.id}}"
+               (keyup)="recalculateTotals()"
+               [(ngModel)]="cartItem.noOfCartons">
+        </form>
       </div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ cartItem.unitsInCartons * cartItem.unitCost * cartItem.noOfCartons | currency:'AUD':true }}</div>
       <div class="div__shoppingCartContentBlocks col-xs-1 col-sm-1 col-md-1 col-lg-1">
