@@ -7,8 +7,13 @@ describe('frontend App', () => {
     page = new FrontendPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display starting total product count of zero', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toContain(
+      `Total`);
+    expect(page.getParagraphText()).toContain(
+      `Products`);
+    expect(page.getParagraphText()).toContain(
+      `0`);
   });
 });
